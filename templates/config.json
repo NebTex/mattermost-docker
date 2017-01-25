@@ -1,0 +1,1 @@
+{{ printf "Settings/%s/AppRoles/%s/config.json" (env "NAMESPACE") (env "APP_NAME") | tree | explode | toJSONPretty }}
