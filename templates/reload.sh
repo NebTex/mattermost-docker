@@ -25,6 +25,9 @@ sed -Ei "s/DB_PORT/${DB_PORT}/" $config
 sed -Ei "s/DB_NAME/${DB_NAME}/" $config
 sed -Ei "s/AWS_ACCESS_KEY_ID/${AWS_ACCESS_KEY_ID}/" $config
 sed -Ei "s/AWS_SECRET_ACCESS_KEY/${AWS_SECRET_ACCESS_KEY}/" $config
+sed -Ei "s/\"true\"/true/" $config
+sed -Ei "s/\"false\"/false/" $config
+
 
 echo ${DB_HOST:?} > /etc/db_host
 echo ${DB_PORT:?} > /etc/db_port
