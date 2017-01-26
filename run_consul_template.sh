@@ -1,4 +1,4 @@
-#!/usr/bin/dumb-init /bin/sh
+#!/usr/bin/dumb-init /bin/bash
 set -e
 
 export VAULT_TOKEN=`cat /secrets/vault-token | jq .clientToken -r`
