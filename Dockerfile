@@ -40,9 +40,6 @@ RUN chmod +x  /bin/entrypoint.sh
 ADD mattermost.sh /bin/mattermost.sh
 RUN chmod +x  /bin/mattermost.sh
 
-ADD reload.sh /bin/reload.sh
-RUN chmod +x  /bin/reload.sh
-
 ADD run_consul_template.sh /bin/run_consul_template.sh
 RUN chmod +x  /bin/run_consul_template.sh
 
