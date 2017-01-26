@@ -1,0 +1,59 @@
+--- 
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: mattermost
+  namespace: genos
+spec: 
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: mattermost
+      annotations: 
+          pod.boostport.com/vault-approle: genos-mattermost
+          pod.boostport.com/vault-init-container: install
+          pod.beta.kubernetes.io/init-containers: '[
+              {
+                "name": "install",
+                "image": "boostport/kubernetes-vault-init:0.2.0",
+                "imagePullPolicy": "IfNotPresent",
+                "env": [
+                  {
+                    "name": "VAULT_ROLE_ID",
+                    "value": "3b325c19-3fa1-3864-ed0f-74f9e67f7c14"
+                  },
+                  {
+                    "name": "CREDENTIALS_PATH",
+                    "value": "/secrets"
+                  }
+                ],
+                "volumeMounts": [
+                  {
+                    "name": "vault-token",
+                    "mountPath": "/secrets"
+                  }
+                ]
+              }
+            ]'
+    spec:
+      volumes:
+      - name: vault-token
+        emptyDir: {}
+      containers: 
+      - image: nebtex/mattermost-docker
+        imagePullPolicy: Always
+        name: mattermost
+        env:
+        - name: CONSUL_HTTP_ADDR
+          value: consul.kv:8500
+        - name: APP_NAME
+          value: mattermost
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        volumeMounts:
+        - name: vault-token
+          mountPath: /secrets
+        

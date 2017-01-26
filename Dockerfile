@@ -47,7 +47,6 @@ ADD run_consul_template.sh /bin/run_consul_template.sh
 RUN chmod +x  /bin/run_consul_template.sh
 
 ADD templates /templates
-RUN mkdir -p /etc/supervisor/conf.d
-RUN mv /templates/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mv /templates/supervisord.conf /usr/local/etc/supervisord.conf
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
