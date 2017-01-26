@@ -28,6 +28,7 @@ sed -Ei "s@AWS_SECRET_ACCESS_KEY@${AWS_SECRET_ACCESS_KEY}@" $config
 sed -Ei 's/"true"/true/' $config
 sed -Ei 's/"false"/false/' $config
 sed -Ei 's/"([0-9]+)"/\1/' $config
+sed -Ei "s/'([0-9]+)'/\1/" $config
 
 echo ${DB_HOST:?} > /etc/db_host
 echo ${DB_PORT:?} > /etc/db_port
