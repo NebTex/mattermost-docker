@@ -46,4 +46,6 @@ RUN chmod +x  /bin/run_consul_template.sh
 ADD templates /templates
 RUN mv /templates/supervisord.conf /usr/local/etc/supervisord.conf
 
+RUN echo "#!/usr/bin/dumb-init /bin/bash" >/bin/reload.sh
+RUN chmod +x /bin/reload.sh
 ENTRYPOINT ["/bin/entrypoint.sh"]
