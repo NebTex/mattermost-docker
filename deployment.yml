@@ -21,7 +21,7 @@ spec:
                 "env": [
                   {
                     "name": "VAULT_ROLE_ID",
-                    "value": "3b325c19-3fa1-3864-ed0f-74f9e67f7c14"
+                    "value": "f3357628-90bf-65d1-fc62-897e159f82ad"
                   },
                   {
                     "name": "CREDENTIALS_PATH",
