@@ -30,9 +30,9 @@ sed -Ei 's/"false"/false/' $config
 sed -Ei 's/"([0-9]+)"/\1/' $config
 sed -Ei "s/'([0-9]+)'/\1/" $config
 
-echo ${DB_HOST:?} > /etc/db_host
-echo ${DB_PORT:?} > /etc/db_port
-echo ${DB_NAME:?} > /etc/db_name
+printf ${DB_HOST:?} > /etc/db_host
+printf ${DB_PORT:?} > /etc/db_port
+printf ${DB_NAME:?} > /etc/db_name
 
 
 supervisorctl restart mattermost
