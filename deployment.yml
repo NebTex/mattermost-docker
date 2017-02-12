@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata: 
   name: mattermost
-  namespace: genos
+  namespace: gitlab
 spec: 
   replicas: 1
   template: 
@@ -11,7 +11,7 @@ spec:
       labels: 
         app: mattermost
       annotations: 
-          pod.boostport.com/vault-approle: genos-mattermost
+          pod.boostport.com/vault-approle: gitlab-mattermost
           pod.boostport.com/vault-init-container: install
           pod.beta.kubernetes.io/init-containers: '[
               {
@@ -42,6 +42,8 @@ spec:
         emptyDir: {}
       containers: 
       - image: nebtex/mattermost-docker
+        ports:
+        - containerPort: 80
         imagePullPolicy: Always
         name: mattermost
         env:

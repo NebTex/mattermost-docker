@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mattermost
+  namespace: gitlab
+  labels:
+    name: mattermost
+spec:
+  clusterIP: None 
+  ports:
+    - name: mattermost
+      targetPort: 80
+      port: 80
+  selector:
+    app: mattermost
